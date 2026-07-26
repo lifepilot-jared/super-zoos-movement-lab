@@ -1,7 +1,8 @@
 import { useEffect, useState, type CSSProperties } from "react";
 
-const runFrames = Array.from({ length: 12 }, (_, i) => `/assets/peter/run/run-${String(i + 1).padStart(2, "0")}.png`);
-const jumpFrames = Array.from({ length: 6 }, (_, i) => `/assets/peter/jump/jump-${String(i + 1).padStart(2, "0")}.jpg`);
+const SOURCE = "https://raw.githubusercontent.com/lifepilot-jared/super-zoos-adventure-v3/v36-character-animation-foundation/public/assets/characters/peter";
+const runFrames = Array.from({ length: 12 }, (_, i) => `${SOURCE}/prototype/run/run-${String(i + 1).padStart(2, "0")}.png`);
+const jumpFrames = Array.from({ length: 6 }, (_, i) => `${SOURCE}/jump-test/jump-test-${String(i + 1).padStart(2, "0")}.jpg`);
 const jumpMs = [180, 210, 280, 360, 280, 220];
 const jumpY = [0, -34, -92, -132, -76, 0];
 
