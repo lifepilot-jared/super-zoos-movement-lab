@@ -1,0 +1,33 @@
+name: Import Spider-Boy Assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-spider-boy-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy approved run and jump assets from V3 branch
+        run: |
+          mkdir -p public/assets/peter/run public/assets/peter/jump
+          for i in $(seq -w 1 12); do
+            curl -L --fail "https://raw.githubusercontent.com/lifepilot-jared/super-zoos-adventure-v3/v36-character-animation-foundation/public/assets/characters/peter/prototype/run/run-${i}.png" -o "public/assets/peter/run/run-${i}.png"
+          done
+          for i in $(seq -w 1 6); do
+            curl -L --fail "https://raw.githubusercontent.com/lifepilot-jared/super-zoos-adventure-v3/v36-character-animation-foundation/public/assets/characters/peter/jump-test/jump-test-${i}.jpg" -o "public/assets/peter/jump/jump-${i}.jpg"
+          done
+      - name: Commit imported assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/peter
+          git diff --cached --quiet || git commit -m "Import approved Spider-Boy movement assets"
+          git push
