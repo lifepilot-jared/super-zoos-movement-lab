@@ -3,69 +3,41 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <title>Super Zoos Movement Lab</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;background:#8ed8f1;touch-action:none}.lab{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr auto;background:#8ed8f1}.top{z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:max(10px,env(safe-area-inset-top)) 14px 10px;background:rgba(10,28,45,.88);color:white;font-weight:800}.top span{font-size:12px}.scene{position:relative;overflow:hidden;background:linear-gradient(#80d6f3 0 42%,#79b85e 42% 100%)}.school{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:min(76vw,700px);height:18%;border-radius:12px 12px 0 0;background:#d9a45e;border:6px solid #a66d35;color:#fff;text-align:center;padding-top:18px;font-weight:900;letter-spacing:.08em;box-shadow:0 8px 18px #0003}.road{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(50vw,520px);height:72%;background:linear-gradient(90deg,#4f5962,#69747d 48%,#4f5962);clip-path:polygon(37% 0,63% 0,100% 100%,0 100%)}.road:after{content:"";position:absolute;left:49%;top:3%;width:2%;height:90%;background:repeating-linear-gradient(to bottom,#fff 0 18px,transparent 18px 40px);opacity:.9}.player{--jump-y:0px;position:absolute;left:50%;bottom:8%;width:clamp(118px,18vw,185px);height:clamp(150px,23vw,235px);transform:translate(-50%,var(--jump-y));transform-origin:50% 100%;z-index:3;transition:transform 85ms linear;display:flex;align-items:flex-end;justify-content:center;overflow:visible}.player.run{transition:none}.player img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 8px 7px #0005);user-select:none;-webkit-user-drag:none}.hurdle{position:absolute;left:50%;bottom:7%;transform:translateX(120px);width:70px;height:42px;border:8px solid #f3f5f7;border-top-width:12px;border-radius:4px;z-index:2}.controls{display:flex;justify-content:center;gap:12px;padding:12px max(12px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom));background:#10273a}.jump{min-width:170px;padding:15px 28px;border:0;border-radius:999px;background:#ffd43b;color:#182738;font-size:20px;font-weight:950;box-shadow:0 5px 0 #c58c00}.jump:active{transform:translateY(3px);box-shadow:0 2px 0 #c58c00}.note{position:absolute;left:50%;top:30%;transform:translateX(-50%);padding:7px 10px;border-radius:999px;background:#fffbdc;color:#26384a;font-size:12px;font-weight:800;z-index:4}.loading{position:absolute;inset:auto 50% 28%;transform:translateX(-50%);z-index:6;padding:10px 14px;border-radius:12px;background:#10273ae8;color:#fff;font-weight:800;white-space:nowrap}@media(max-width:700px){.school{width:84vw;height:15%;font-size:12px}.road{width:72vw}.player{width:clamp(112px,27vw,160px);height:clamp(145px,35vw,205px);bottom:9%}.hurdle{transform:translateX(92px);width:55px;height:34px}.note{top:26%}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;background:#8ed8f1;touch-action:none}.lab{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr auto;background:#8ed8f1}.top{z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:max(10px,env(safe-area-inset-top)) 14px 10px;background:rgba(10,28,45,.88);color:white;font-weight:800}.top span{font-size:12px}.scene{position:relative;overflow:hidden;background:linear-gradient(#80d6f3 0 42%,#79b85e 42% 100%)}.school{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:min(76vw,700px);height:18%;border-radius:12px 12px 0 0;background:#d9a45e;border:6px solid #a66d35;color:#fff;text-align:center;padding-top:18px;font-weight:900;letter-spacing:.08em;box-shadow:0 8px 18px #0003}.road{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(50vw,520px);height:72%;background:linear-gradient(90deg,#4f5962,#69747d 48%,#4f5962);clip-path:polygon(37% 0,63% 0,100% 100%,0 100%)}.road:after{content:"";position:absolute;left:49%;top:3%;width:2%;height:90%;background:repeating-linear-gradient(to bottom,#fff 0 18px,transparent 18px 40px);opacity:.9}.player{--jump-y:0px;position:absolute;left:50%;bottom:8%;width:clamp(118px,18vw,185px);height:clamp(150px,23vw,235px);transform:translate(-50%,var(--jump-y));transform-origin:50% 100%;z-index:3;transition:transform 85ms linear;display:flex;align-items:flex-end;justify-content:center}.player.run{transition:none}.player canvas{display:block;width:100%;height:100%;filter:drop-shadow(0 8px 7px #0005)}.hurdle{position:absolute;left:50%;bottom:7%;transform:translateX(120px);width:70px;height:42px;border:8px solid #f3f5f7;border-top-width:12px;border-radius:4px;z-index:2}.controls{display:flex;justify-content:center;gap:12px;padding:12px max(12px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom));background:#10273a}.jump{min-width:170px;padding:15px 28px;border:0;border-radius:999px;background:#ffd43b;color:#182738;font-size:20px;font-weight:950;box-shadow:0 5px 0 #c58c00}.jump:active{transform:translateY(3px);box-shadow:0 2px 0 #c58c00}.jump:disabled{opacity:.55}.note{position:absolute;left:50%;top:30%;transform:translateX(-50%);padding:7px 10px;border-radius:999px;background:#fffbdc;color:#26384a;font-size:12px;font-weight:800;z-index:4}.loading{position:absolute;inset:auto 50% 28%;transform:translateX(-50%);z-index:6;padding:10px 14px;border-radius:12px;background:#10273ae8;color:#fff;font-weight:800;white-space:nowrap}@media(max-width:700px){.school{width:84vw;height:15%;font-size:12px}.road{width:72vw}.player{width:clamp(112px,27vw,160px);height:clamp(145px,35vw,205px);bottom:9%}.hurdle{transform:translateX(92px);width:55px;height:34px}.note{top:26%}}
 </style>
 </head>
 <body>
-<main class="lab">
-<header class="top"><strong>SUPER ZOOS MOVEMENT LAB</strong><span id="status">PREPARING FRAMES</span></header>
-<section class="scene" id="scene"><div class="school">SUPER ZOOS SCHOOL</div><div class="road"></div><div class="note">Tap JUMP or swipe up</div><div id="player" class="player run"><img id="peter" alt="Spider-Boy Peter" draggable="false"/></div><div id="loading" class="loading">Cleaning Spider-Boy frames…</div><div class="hurdle"></div></section>
-<footer class="controls"><button class="jump" id="jump" disabled>JUMP</button></footer>
-</main>
+<main class="lab"><header class="top"><strong>SUPER ZOOS MOVEMENT LAB</strong><span id="status">PREPARING FRAMES</span></header><section class="scene" id="scene"><div class="school">SUPER ZOOS SCHOOL</div><div class="road"></div><div class="note">Tap JUMP or swipe up</div><div id="player" class="player run"><canvas id="peter" width="360" height="460"></canvas></div><div id="loading" class="loading">Isolating Spider-Boy…</div><div class="hurdle"></div></section><footer class="controls"><button class="jump" id="jump" disabled>JUMP</button></footer></main>
 <script>
+const VERSION='v2-838f-fix';
 const SOURCE='https://raw.githubusercontent.com/lifepilot-jared/super-zoos-adventure-v3/v36-character-animation-foundation/public/assets/characters/peter';
-const rawRun=Array.from({length:12},(_,i)=>`${SOURCE}/prototype/run/run-${String(i+1).padStart(2,'0')}.png`);
-const rawJump=Array.from({length:6},(_,i)=>`${SOURCE}/jump-test/jump-test-${String(i+1).padStart(2,'0')}.jpg`);
-const jumpMs=[180,210,280,360,280,220],jumpY=[0,-28,-72,-105,-58,0];
-const runFrames=[],jumpFrames=[];
-let mode='run',runIndex=0,jumpIndex=0,queued=false,timer=null,startY=null,ready=false;
-const peter=document.getElementById('peter'),player=document.getElementById('player'),status=document.getElementById('status'),jumpButton=document.getElementById('jump'),loading=document.getElementById('loading');
+const rawRun=Array.from({length:12},(_,i)=>`${SOURCE}/prototype/run/run-${String(i+1).padStart(2,'0')}.png?${VERSION}`);
+const rawJump=Array.from({length:6},(_,i)=>`${SOURCE}/jump-test/jump-test-${String(i+1).padStart(2,'0')}.jpg?${VERSION}`);
+const jumpMs=[180,210,280,360,280,220],jumpY=[0,-24,-62,-92,-50,0];
+const runFrames=[],jumpFrames=[];let mode='run',runIndex=0,jumpIndex=0,queued=false,timer=null,startY=null,ready=false;
+const canvas=document.getElementById('peter'),ctx=canvas.getContext('2d'),player=document.getElementById('player'),status=document.getElementById('status'),jumpButton=document.getElementById('jump'),loading=document.getElementById('loading');
 function loadImage(src){return new Promise((resolve,reject)=>{const img=new Image();img.crossOrigin='anonymous';img.onload=()=>resolve(img);img.onerror=reject;img.src=src});}
-function cleanFrame(img){
-  const maxSide=720,scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));
-  const w=Math.max(1,Math.round(img.naturalWidth*scale)),h=Math.max(1,Math.round(img.naturalHeight*scale));
-  const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(img,0,0,w,h);
-  const im=x.getImageData(0,0,w,h),d=im.data,mask=new Uint8Array(w*h);
-  for(let i=0,p=0;i<d.length;i+=4,p++){
-    const r=d[i],g=d[i+1],b=d[i+2],a=d[i+3],mx=Math.max(r,g,b),mn=Math.min(r,g,b);
-    const neutralLight=mn>174&&(mx-mn)<30;
-    if(a<24||neutralLight){d[i+3]=0;mask[p]=0}else mask[p]=1;
-  }
-  const seen=new Uint8Array(w*h);let best=[],stack=[];
-  for(let p=0;p<mask.length;p++){
-    if(!mask[p]||seen[p])continue;stack=[p];seen[p]=1;const comp=[];
-    while(stack.length){const q=stack.pop();comp.push(q);const qx=q%w,qy=(q/w)|0;
-      if(qx>0){const n=q-1;if(mask[n]&&!seen[n]){seen[n]=1;stack.push(n)}}
-      if(qx<w-1){const n=q+1;if(mask[n]&&!seen[n]){seen[n]=1;stack.push(n)}}
-      if(qy>0){const n=q-w;if(mask[n]&&!seen[n]){seen[n]=1;stack.push(n)}}
-      if(qy<h-1){const n=q+w;if(mask[n]&&!seen[n]){seen[n]=1;stack.push(n)}}
-    }
-    if(comp.length>best.length)best=comp;
-  }
-  const keep=new Uint8Array(w*h);for(const p of best)keep[p]=1;
-  let minX=w,minY=h,maxX=0,maxY=0;
-  for(let p=0;p<mask.length;p++){if(!keep[p]){d[p*4+3]=0;continue}const px=p%w,py=(p/w)|0;if(px<minX)minX=px;if(px>maxX)maxX=px;if(py<minY)minY=py;if(py>maxY)maxY=py;}
-  x.putImageData(im,0,0);
-  if(minX>maxX||minY>maxY)return c.toDataURL('image/png');
-  const pad=Math.max(8,Math.round(Math.max(maxX-minX,maxY-minY)*0.035));
-  minX=Math.max(0,minX-pad);minY=Math.max(0,minY-pad);maxX=Math.min(w-1,maxX+pad);maxY=Math.min(h-1,maxY+pad);
-  const cw=maxX-minX+1,ch=maxY-minY+1,out=document.createElement('canvas');out.width=cw;out.height=ch;out.getContext('2d').drawImage(c,minX,minY,cw,ch,0,0,cw,ch);
-  return out.toDataURL('image/png');
+function isolate(img){
+ const maxSide=760,s=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight)),w=Math.max(1,Math.round(img.naturalWidth*s)),h=Math.max(1,Math.round(img.naturalHeight*s));
+ const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(img,0,0,w,h);const im=x.getImageData(0,0,w,h),d=im.data,mask=new Uint8Array(w*h);
+ for(let p=0,i=0;p<mask.length;p++,i+=4){const r=d[i],g=d[i+1],b=d[i+2],a=d[i+3];const red=(r>48&&r>g*1.22&&r>b*1.12);const dark=(r<125&&g<125&&b<125);mask[p]=(a>30&&(red||dark))?1:0;}
+ const seen=new Uint8Array(w*h);let winner=null,best=-1;
+ for(let p=0;p<mask.length;p++){if(!mask[p]||seen[p])continue;const stack=[p],comp=[];seen[p]=1;let sx=0,sy=0,redCount=0,darkCount=0;
+  while(stack.length){const q=stack.pop();comp.push(q);const qx=q%w,qy=(q/w)|0;sx+=qx;sy+=qy;const k=q*4,r=d[k],g=d[k+1],b=d[k+2];if(r>48&&r>g*1.22&&r>b*1.12)redCount++;if(r<125&&g<125&&b<125)darkCount++;const ns=[];if(qx>0)ns.push(q-1);if(qx<w-1)ns.push(q+1);if(qy>0)ns.push(q-w);if(qy<h-1)ns.push(q+w);for(const n of ns)if(mask[n]&&!seen[n]){seen[n]=1;stack.push(n)}}
+  const cx=sx/comp.length,cy=sy/comp.length,dist=Math.hypot((cx-w/2)/w,(cy-h/2)/h);const colourMix=Math.min(redCount,darkCount);const score=comp.length+colourMix*5-dist*comp.length*1.8;if(comp.length>120&&score>best){best=score;winner=comp;}
+ }
+ if(!winner)throw new Error('Spider-Boy component not found');const keep=new Uint8Array(w*h);for(const p of winner)keep[p]=1;let minX=w,minY=h,maxX=-1,maxY=-1;
+ for(let p=0;p<keep.length;p++){const k=p*4;if(!keep[p]){d[k+3]=0;continue}const px=p%w,py=(p/w)|0;if(px<minX)minX=px;if(px>maxX)maxX=px;if(py<minY)minY=py;if(py>maxY)maxY=py;}
+ const expand=3;for(let y=Math.max(0,minY-expand);y<=Math.min(h-1,maxY+expand);y++)for(let xx=Math.max(0,minX-expand);xx<=Math.min(w-1,maxX+expand);xx++){const p=y*w+xx,k=p*4;if(keep[p])continue;let near=false;for(let yy=Math.max(0,y-expand);yy<=Math.min(h-1,y+expand)&&!near;yy++)for(let xxx=Math.max(0,xx-expand);xxx<=Math.min(w-1,xx+expand);xxx++)if(keep[yy*w+xxx]){near=true;break}if(near){const r=d[k],g=d[k+1],b=d[k+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b);if(!(mn>180&&mx-mn<35)&&!(r>170&&g>125&&b<80))d[k+3]=Math.min(d[k+3],220);}}
+ x.putImageData(im,0,0);const pad=Math.max(8,Math.round((maxY-minY)*.04));minX=Math.max(0,minX-pad);minY=Math.max(0,minY-pad);maxX=Math.min(w-1,maxX+pad);maxY=Math.min(h-1,maxY+pad);const cw=maxX-minX+1,ch=maxY-minY+1,out=document.createElement('canvas');out.width=360;out.height=460;const o=out.getContext('2d');const scale=Math.min(320/cw,420/ch);const dw=cw*scale,dh=ch*scale;o.drawImage(c,minX,minY,cw,ch,(360-dw)/2,460-dh,dw,dh);return out;
 }
-async function prepare(){
-  try{
-    let done=0;const total=rawRun.length+rawJump.length;
-    for(const src of rawRun){runFrames.push(cleanFrame(await loadImage(src)));status.textContent=`PREPARING ${++done}/${total}`;}
-    for(const src of rawJump){jumpFrames.push(cleanFrame(await loadImage(src)));status.textContent=`PREPARING ${++done}/${total}`;}
-    ready=true;loading.remove();jumpButton.disabled=false;schedule();
-  }catch(err){loading.textContent='Frame cleaning failed — reload page';status.textContent='LOAD ERROR';console.error(err);}
-}
-function draw(){if(!ready)return;const jumping=mode==='jump';peter.src=jumping?jumpFrames[jumpIndex]:runFrames[runIndex];player.className=`player ${mode}`;player.style.setProperty('--jump-y',`${jumping?jumpY[jumpIndex]:0}px`);status.textContent=jumping?`JUMP ${jumpIndex+1}/6`:`RUN ${runIndex+1}/12${queued?' · QUEUED':''}`}
-function schedule(){clearTimeout(timer);draw();if(mode==='run'){timer=setTimeout(()=>{if(queued&&runIndex===0){queued=false;jumpIndex=0;mode='jump'}else runIndex=(runIndex+1)%12;schedule()},115)}else{timer=setTimeout(()=>{if(jumpIndex===5){runIndex=1;jumpIndex=0;mode='run'}else jumpIndex++;schedule()},jumpMs[jumpIndex])}}
-function requestJump(){if(ready&&mode==='run'){queued=true;draw()}}
-jumpButton.addEventListener('click',requestJump);window.addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();requestJump()}});const scene=document.getElementById('scene');scene.addEventListener('pointerdown',e=>startY=e.clientY);scene.addEventListener('pointerup',e=>{if(startY!==null&&startY-e.clientY>28)requestJump();startY=null});scene.addEventListener('pointercancel',()=>startY=null);prepare();
+async function prepare(){try{let done=0,total=18;for(const src of rawRun){runFrames.push(isolate(await loadImage(src)));status.textContent=`PREPARING ${++done}/${total}`}for(const src of rawJump){jumpFrames.push(isolate(await loadImage(src)));status.textContent=`PREPARING ${++done}/${total}`}ready=true;loading.remove();jumpButton.disabled=false;schedule()}catch(err){loading.textContent='Frame isolation failed';status.textContent='LOAD ERROR';console.error(err)}}
+function draw(){if(!ready)return;const jumping=mode==='jump',frame=jumping?jumpFrames[jumpIndex]:runFrames[runIndex];ctx.clearRect(0,0,360,460);ctx.drawImage(frame,0,0);player.className=`player ${mode}`;player.style.setProperty('--jump-y',`${jumping?jumpY[jumpIndex]:0}px`);status.textContent=jumping?`JUMP ${jumpIndex+1}/6`:`RUN ${runIndex+1}/12${queued?' · QUEUED':''}`}
+function schedule(){clearTimeout(timer);draw();if(mode==='run')timer=setTimeout(()=>{if(queued&&runIndex===0){queued=false;jumpIndex=0;mode='jump'}else runIndex=(runIndex+1)%12;schedule()},115);else timer=setTimeout(()=>{if(jumpIndex===5){runIndex=1;jumpIndex=0;mode='run'}else jumpIndex++;schedule()},jumpMs[jumpIndex])}
+function requestJump(){if(ready&&mode==='run'){queued=true;draw()}}jumpButton.addEventListener('click',requestJump);window.addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();requestJump()}});const scene=document.getElementById('scene');scene.addEventListener('pointerdown',e=>startY=e.clientY);scene.addEventListener('pointerup',e=>{if(startY!==null&&startY-e.clientY>28)requestJump();startY=null});scene.addEventListener('pointercancel',()=>startY=null);prepare();
 </script>
 </body>
 </html>
