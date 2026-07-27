@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<title>Super Zoos Movement Lab v2</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;background:#8ed8f1;touch-action:none}.lab{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr auto}.top{z-index:5;display:flex;justify-content:space-between;align-items:center;padding:max(10px,env(safe-area-inset-top)) 14px 10px;background:#18344a;color:#fff;font-weight:900}.top span{font-size:12px}.scene{position:relative;overflow:hidden;background:linear-gradient(#7dd3f1 0 42%,#77b75e 42% 100%)}.school{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:min(76vw,700px);height:18%;border-radius:12px 12px 0 0;background:#d9a45e;border:6px solid #a66d35;color:#fff;text-align:center;padding-top:18px;font-weight:900;letter-spacing:.08em}.road{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(50vw,520px);height:72%;background:linear-gradient(90deg,#4f5962,#69747d 48%,#4f5962);clip-path:polygon(37% 0,63% 0,100% 100%,0 100%)}.road:after{content:"";position:absolute;left:49%;top:3%;width:2%;height:90%;background:repeating-linear-gradient(to bottom,#fff 0 18px,transparent 18px 40px)}.player{--jump-y:0px;position:absolute;left:50%;bottom:8%;width:clamp(118px,18vw,185px);height:clamp(150px,23vw,235px);transform:translate(-50%,var(--jump-y));transform-origin:50% 100%;z-index:3;display:flex;align-items:flex-end;justify-content:center;transition:transform 85ms linear}.player.run{transition:none}.player img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 7px #0005);user-select:none;-webkit-user-drag:none}.hurdle{position:absolute;left:50%;bottom:7%;transform:translateX(120px);width:70px;height:42px;border:8px solid #f3f5f7;border-top-width:12px;border-radius:4px;z-index:2}.note{position:absolute;left:50%;top:29%;transform:translateX(-50%);padding:7px 10px;border-radius:999px;background:#fffbdc;color:#26384a;font-size:12px;font-weight:800;z-index:4}.controls{display:flex;justify-content:center;padding:12px max(12px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom));background:#10273a}.jump{min-width:170px;padding:15px 28px;border:0;border-radius:999px;background:#ffd43b;color:#182738;font-size:20px;font-weight:950;box-shadow:0 5px 0 #c58c00}.jump:active{transform:translateY(3px);box-shadow:0 2px 0 #c58c00}@media(max-width:700px){.school{width:84vw;height:15%;font-size:12px}.road{width:72vw}.player{width:clamp(112px,27vw,160px);height:clamp(145px,35vw,205px);bottom:9%}.hurdle{transform:translateX(92px);width:55px;height:34px}.note{top:26%}}
+</style>
+</head>
+<body>
+<main class="lab"><header class="top"><strong>SUPER ZOOS MOVEMENT LAB v2</strong><span id="status">LOADING</span></header><section class="scene" id="scene"><div class="school">SUPER ZOOS SCHOOL</div><div class="road"></div><div class="note">Tap JUMP or swipe up</div><div id="player" class="player run"><img id="peter" alt="Spider-Boy Peter" draggable="false"/></div><div class="hurdle"></div></section><footer class="controls"><button class="jump" id="jump">JUMP</button></footer></main>
+<script>
+const BUILD='play-v2-a128563';
+const RUN_SOURCE='https://raw.githubusercontent.com/lifepilot-jared/super-zoos-adventure-v3/v36-character-animation-foundation/public/assets/characters/peter/prototype/run';
+const runFrames=Array.from({length:12},(_,i)=>`${RUN_SOURCE}/run-${String(i+1).padStart(2,'0')}.png?${BUILD}`);
+const jumpFrames=Array.from({length:6},(_,i)=>`assets/peter/jump/jump-${String(i+1).padStart(2,'0')}.png?${BUILD}`);
+const jumpMs=[180,210,280,360,280,220],jumpY=[0,-24,-62,-92,-50,0];
+let mode='run',runIndex=0,jumpIndex=0,queued=false,timer=null,startY=null;
+const peter=document.getElementById('peter'),player=document.getElementById('player'),status=document.getElementById('status');
+[...runFrames,...jumpFrames].forEach(src=>{const img=new Image();img.src=src});
+function draw(){const jumping=mode==='jump';peter.src=jumping?jumpFrames[jumpIndex]:runFrames[runIndex];player.className=`player ${mode}`;player.style.setProperty('--jump-y',`${jumping?jumpY[jumpIndex]:0}px`);status.textContent=jumping?`JUMP ${jumpIndex+1}/6`:`RUN ${runIndex+1}/12${queued?' · QUEUED':''}`}
+function schedule(){clearTimeout(timer);draw();if(mode==='run'){timer=setTimeout(()=>{if(queued&&runIndex===0){queued=false;jumpIndex=0;mode='jump'}else runIndex=(runIndex+1)%12;schedule()},115)}else{timer=setTimeout(()=>{if(jumpIndex===5){runIndex=1;jumpIndex=0;mode='run'}else jumpIndex++;schedule()},jumpMs[jumpIndex])}}
+function requestJump(){if(mode==='run'){queued=true;draw()}}
+document.getElementById('jump').addEventListener('click',requestJump);window.addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();requestJump()}});const scene=document.getElementById('scene');scene.addEventListener('pointerdown',e=>startY=e.clientY);scene.addEventListener('pointerup',e=>{if(startY!==null&&startY-e.clientY>28)requestJump();startY=null});scene.addEventListener('pointercancel',()=>startY=null);schedule();
+</script>
+</body>
+</html>
